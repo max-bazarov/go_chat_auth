@@ -6,13 +6,13 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 
-option go_package = "github.com/max-bazarov/go_chat_auth/pkg/auth_v1;auth_v1";
+option go_package = "github.com/max-bazarov/go_chat_auth/pkg/auth_v1;auth_v1"; // where generated files will be contained. There is a package name of these files after ;
+// Why pkg? Because protoc generates grpc server and client. We will import client in other microservices if we want to make requests to this service
 
-service AuthV1 {
+service UserAPI {
     rpc Create(CreateRequest) returns (CreateResponse);
     rpc Get(GetRequest) returns (GetResponse);
-    rpc List(ListRequest) returns (ListResponse);
-    rpc Update(UpdateRequest) returns (google.protobuf.Empty);
+    rpc Update(UpdateRequest) returns (google.protobuf.Empty); // returns empty message
     rpc Delete(DeleteRequest) returns (google.protobuf.Empty);
   }
 
@@ -30,11 +30,8 @@ message UserInfo {
 }
 
 message UserUpdateInfo {
-    google.protobuf.StringValue name = 1;
+    google.protobuf.StringValue name = 1; // в Protobuf все поля изначально опциональны. Этот тип данных присвоит null, если ничего не было передано
     google.protobuf.StringValue email = 2;
-    google.protobuf.StringValue password = 3;
-    google.protobuf.StringValue password_confirm = 4;
-    Role role = 5;
 }
 
 message User {
@@ -58,15 +55,6 @@ message GetRequest {
 
 message GetResponse {
     User user = 1;
-}
-
-message ListRequest {
-    int64 limit = 1;
-    int64 offset = 2;
-}
-
-message ListResponse {
-    repeated User users = 1;
 }
 
 message UpdateRequest {
