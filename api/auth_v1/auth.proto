@@ -9,7 +9,7 @@ import "google/protobuf/wrappers.proto";
 option go_package = "github.com/max-bazarov/go_chat_auth/pkg/auth_v1;auth_v1"; // where generated files will be contained. There is a package name of these files after ;
 // Why pkg? Because protoc generates grpc server and client. We will import client in other microservices if we want to make requests to this service
 
-service UserAPI {
+service UserAPIV1 {
     rpc Create(CreateRequest) returns (CreateResponse);
     rpc Get(GetRequest) returns (GetResponse);
     rpc Update(UpdateRequest) returns (google.protobuf.Empty); // returns empty message
