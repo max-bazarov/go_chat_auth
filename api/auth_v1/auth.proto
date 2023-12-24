@@ -17,8 +17,8 @@ service UserAPIV1 {
   }
 
 enum Role {
-    USER = 0;
-    ADMIN = 1;
+    user = 0;
+    admin = 1;
 }
 
 message UserInfo {

@@ -22,7 +22,7 @@ type server struct {
 }
 
 func (s *server) Create(ctx context.Context, req *auth_v1.CreateRequest) (*auth_v1.CreateResponse, error) {
-	log.Printf("%#v", req.User)
+	log.Printf("%#v", req.GetUser())
 	return &auth_v1.CreateResponse{
 		Id: gofakeit.Int64(),
 	}, nil
@@ -39,7 +39,7 @@ func (s *server) Get(ctx context.Context, req *auth_v1.GetRequest) (*auth_v1.Get
 				Email:           gofakeit.Email(),
 				Password:        gofakeit.BeerAlcohol(),
 				PasswordConfirm: gofakeit.BeerAlcohol(),
-				Role:            auth_v1.Role_USER,
+				Role:            auth_v1.Role_user,
 			},
 			CreatedAt: timestamppb.New(gofakeit.Date()),
 			UpdatedAt: timestamppb.New(gofakeit.Date()),
